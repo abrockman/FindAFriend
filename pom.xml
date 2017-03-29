@@ -15,7 +15,7 @@
 			<artifactId>javax.ws.rs-api</artifactId>
 			<version>2.0.1</version>
 		</dependency>
-		<!-- Jersey 2.25-->
+		<!-- Jersey 2.25 -->
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
@@ -30,8 +30,8 @@
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-mvc-jsp</artifactId>
 			<version>2.25</version>
-		</dependency> 
-		
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
 		<dependency>
@@ -40,8 +40,12 @@
 			<version>7.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 
-		
 
 		<dependency>
 			<groupId>com.amazonaws</groupId>

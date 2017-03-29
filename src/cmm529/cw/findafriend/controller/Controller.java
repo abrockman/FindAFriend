@@ -18,6 +18,7 @@ import cmm529.cw.findafriend.dao.UserDao;
 @Path("/message")
 public class Controller {
 
+	//Test remove
 	private @Inject NumberGen num;
 	
 	private @Inject UserDao userDao;

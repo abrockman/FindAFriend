@@ -27,7 +27,12 @@
         </param-value>
 		</init-param>
 
-		<!-- <load-on-startup>1</load-on-startup>-->
+		<init-param>
+			<param-name>jersey.config.servlet.filter.staticContentRegex</param-name>
+			<param-value>/(Resources|(WEB-INF))/.*</param-value>
+		</init-param>
+
+		<!-- <load-on-startup>1</load-on-startup> -->
 	</filter>
 
 	<filter-mapping>
