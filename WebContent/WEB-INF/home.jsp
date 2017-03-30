@@ -23,7 +23,7 @@
 
             <!-- AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o -->
 
-            <h1>My First Google Map</h1>
+            <h1>Google Maps</h1>
 <h2 id = "current"></h2>
             <div id="googleMap" style="width:100%;height:400px;"></div>
 
@@ -54,7 +54,7 @@
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o&callback=myMap"></script>
 
-
+<button type="button" onClick="submitLocation()">submit location</button>
 
             <!-- Modal Window for Sign in -->
             <script type="text/javascript">
@@ -67,6 +67,24 @@
                 }
                  );
 
+                var submitLocation = function(){
+                	console.log("AJAX");
+                	$.ajax({
+                	    type: 'POST',
+                	    // make sure you respect the same origin policy with this url:
+                	    // http://en.wikipedia.org/wiki/Same_origin_policy
+                	    url: '/FindAFriend/updatelocation',
+                	    data: { 
+                	        'userId': '1', 
+                	        'lat': "1",
+                	        	'lon':"1" // <-- the $ sign in the parameter name seems unusual, I would avoid it
+                	    },
+                	    success: function(msg){
+                	        alert('msg' + msg);
+                	    }
+                	});
+                	
+                }
 
 
             </script>
