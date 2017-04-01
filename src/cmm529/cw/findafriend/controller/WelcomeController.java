@@ -35,7 +35,6 @@ public class WelcomeController {
 	@GET
 	public void getHome(@Context HttpServletRequest request, @Context HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 
 	}

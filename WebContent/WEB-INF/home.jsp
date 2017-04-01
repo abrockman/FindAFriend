@@ -29,6 +29,7 @@
                 	<script>
            				var user = "${sessionScope.user}";
           			</script>
+          			<jsp:include page="managementModals.jsp"></jsp:include>
                 	<jsp:include page="Maps.jsp"></jsp:include>
                 </c:when>
                

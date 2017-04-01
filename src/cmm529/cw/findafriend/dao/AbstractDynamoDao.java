@@ -47,7 +47,7 @@ public abstract class AbstractDynamoDao<T> {
 	public List<T> searchFor(String attributeName, String attributeValue) {
 		Map<String, AttributeValue> map = new HashMap<>();
 		map.put(":val1", new AttributeValue().withS(attributeValue));
-		DynamoDBScanExpression scanCrit = new DynamoDBScanExpression().withFilterExpression(attributeName + ":val1")
+		DynamoDBScanExpression scanCrit = new DynamoDBScanExpression().withFilterExpression(attributeName + " = :val1")
 				.withExpressionAttributeValues(map);
 		return mapper.scan(persistentClass, scanCrit);
 	}
