@@ -1,13 +1,16 @@
 package cmm529.cw.findafriend.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 public abstract class AbstractDynamoDao<T> {
 
@@ -26,8 +29,8 @@ public abstract class AbstractDynamoDao<T> {
 	public T findById(String id) {
 		return mapper.load(persistentClass, id);
 	}
-	
-	public List<T> findAll(){
+
+	public List<T> findAll() {
 		return mapper.scan(persistentClass, new DynamoDBScanExpression());
 	}
 
@@ -36,9 +39,17 @@ public abstract class AbstractDynamoDao<T> {
 	}
 
 	public void delete(T entity) {
-//TODO Implement
+		if(entity != null){
+			mapper.delete(entity);
+		}
 	}
 
-	// Query...
+	public List<T> searchFor(String attributeName, String attributeValue) {
+		Map<String, AttributeValue> map = new HashMap<>();
+		map.put(":val1", new AttributeValue().withS(attributeValue));
+		DynamoDBScanExpression scanCrit = new DynamoDBScanExpression().withFilterExpression(attributeName + ":val1")
+				.withExpressionAttributeValues(map);
+		return mapper.scan(persistentClass, scanCrit);
+	}
 
 }
