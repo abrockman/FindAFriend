@@ -22,78 +22,33 @@
 
 
             <!-- AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o -->
+           
+           	<!-- Assess user visitor for a user session. Display modal if not signed in. -->
+            <c:choose >
+                <c:when test="${not empty sessionScope.user }">
+                	<script>
+           				var user = "${sessionScope.user}";
+          			</script>
+                	<jsp:include page="Maps.jsp"></jsp:include>
+                </c:when>
+               
+                <c:otherwise>
+                    <script type="text/javascript">
+                       // var user = ${sessionScope.user} + "";
+                        $(function(){
+                           
+                                $('#myModal').modal('show'); 
 
-            <h1>Google Maps</h1>
-<h2 id = "current"></h2>
-            <div id="googleMap" style="width:100%;height:400px;"></div>
-
-            <script>
-                function myMap() {
-					/*INSERT CURRENT LOCATION HERE*/
-                    var map = new google.maps.Map(document.getElementById("googleMap"), {
-                        zoom: 1,center: new google.maps.LatLng(35.137879, -82.836914),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    });
-					
-					/*INSERT CURRENT LOCATION HERE*/
-                    var myMarker = new google.maps.Marker({
-                        position: new google.maps.LatLng(47.651968, 9.478485),
-                        draggable: true
-                    });
-					
-					/*PULL DATA ON CLICK FROM HERE*/
-                    google.maps.event.addListener(myMarker, 'dragend', function (evt) {
-                        document.getElementById('current').innerHTML = 'Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3);
-                    });
-
-
-                    map.setCenter(myMarker.position);
-                    myMarker.setMap(map);
-                }
-            </script>
-
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o&callback=myMap"></script>
-
-<button type="button" onClick="submitLocation()">submit location</button>
-
-            <!-- Modal Window for Sign in -->
-            <script type="text/javascript">
-                $(function(){
-                    var user = ${sessionScope.user} + "";
-                    console.log(user);
-                    if(user == ""){
-                        $('#myModal').modal('show');
-                    }
-                }
-                 );
-
-                var submitLocation = function(){
-                	console.log("AJAX");
-                	$.ajax({
-                	    type: 'POST',
-                	    // make sure you respect the same origin policy with this url:
-                	    // http://en.wikipedia.org/wiki/Same_origin_policy
-                	    url: '/FindAFriend/updatelocation',
-                	    data: { 
-                	        'userId': '1', 
-                	        'lat': "1",
-                	        	'lon':"1" // <-- the $ sign in the parameter name seems unusual, I would avoid it
-                	    },
-                	    success: function(msg){
-                	        alert('msg' + msg);
-                	    }
-                	});
-                	
-                }
-
-
-            </script>
-
+                        }
+                         );
+                    </script>
+                </c:otherwise>
+            </c:choose>
 
             <h1>${sessionScope.user}</h1>
             <h2>${signUpSuccess}</h2>
 
-
+			<!-- Login / Sign Up Modal -->
             <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog">
                     <!-- Modal content-->

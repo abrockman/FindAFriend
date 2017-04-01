@@ -51,6 +51,7 @@ public class WelcomeController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userId);
+			request.getSession().setAttribute("userLoc", userDao.findById(userId).getLocation());
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		}
 
@@ -73,6 +74,7 @@ public class WelcomeController {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userId);
 			request.setAttribute("signUpSuccess", "Congratulations! You have created an account.");
+			request.getSession().setAttribute("userLoc", userDao.findById(userId).getLocation());
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		}
 
@@ -80,7 +82,6 @@ public class WelcomeController {
 
 	@Path("updatelocation")
 	@POST
-	 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public void submitLocation(@Context HttpServletRequest request, @Context HttpServletResponse response,
 			@FormParam("userId") String userId, @FormParam("lat") double lat, @FormParam("lon") double lon)
 			throws IOException {
@@ -97,8 +98,12 @@ public class WelcomeController {
 
 	@Path("updatelocation")
 	@GET
-	public String updateLocation() {
-		return "Success";
+	@Produces(MediaType.APPLICATION_JSON)
+	public User updateLocation(@Context HttpServletRequest request, @Context HttpServletResponse response) {
+		String userId = (String) request.getSession().getAttribute("user");
+		User user = userService.findUserById(userId);
+		request.getSession().setAttribute("userLoc", user.getLocation());
+		return user;
 	}
 
 }
