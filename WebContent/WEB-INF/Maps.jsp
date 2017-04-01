@@ -1,18 +1,28 @@
-<h1>Google Maps</h1>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+			
+			<h1>Google Maps</h1>
+			
 			<h2 id = "current"></h2>
+            
             <div id="googleMap" style="width:100%;height:400px;"></div>
+
+			<script>
+			//Default position
+				var currentLat = 0;
+				var currentLon = 0;
+			</script>
+
+
+			<c:if test = "${not empty userLoc.latitude}">
+				<script>
+					var currentLat = ${userLoc.latitude};
+					var currentLon = ${userLoc.longitude};
+				</script>
+			</c:if>
+
 
             <script>
             
-            
-            	
-            	var currentLat = ${userLoc.latitude};
-            	var currentLon = ${userLoc.longitude};
-            	
-            	$.get("/FindAFriend/updatelocation", function(data, status){
-                   	jsonUserObj(data);
-                   	});
-            	
             	 var jsonUserObj = function (result) {
                  	currentLat = result.lat;
                  	currentLon = result.lon;
@@ -22,7 +32,7 @@
             	 
             	 </script>
             	 
-            	 <script defer = "defer">
+            	 <script	>
             	
             	var map;
             	var myMarker;
@@ -70,7 +80,7 @@
                 	    data: { 
                 	        'userId': user, 
                 	        'lat': currentLat,
-                	        	'lon':currentLon // <-- the $ sign in the parameter name seems unusual, I would avoid it
+                	        'lon':currentLon 
                 	    },
                 	    success: function(result){
                 	    	jsonUserObj(result);

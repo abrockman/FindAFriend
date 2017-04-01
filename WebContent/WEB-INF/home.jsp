@@ -22,17 +22,19 @@
 
 
             <!-- AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o -->
-           <script>
-           var user = ${sessionScope.user} + "";
-           </script>
            
+           	<!-- Assess user visitor for a user session. Display modal if not signed in. -->
             <c:choose >
                 <c:when test="${not empty sessionScope.user }">
-                <jsp:include page="Maps.jsp"></jsp:include>
+                	<script>
+           				var user = "${sessionScope.user}";
+          			</script>
+                	<jsp:include page="Maps.jsp"></jsp:include>
                 </c:when>
+               
                 <c:otherwise>
                     <script type="text/javascript">
-                        var user = ${sessionScope.user} + "";
+                       // var user = ${sessionScope.user} + "";
                         $(function(){
                            
                                 $('#myModal').modal('show'); 
@@ -46,7 +48,7 @@
             <h1>${sessionScope.user}</h1>
             <h2>${signUpSuccess}</h2>
 
-
+			<!-- Login / Sign Up Modal -->
             <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog">
                     <!-- Modal content-->
