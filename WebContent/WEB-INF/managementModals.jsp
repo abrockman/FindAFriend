@@ -49,32 +49,31 @@
 					var outstandingTable;
 					
 					$(function(){
-						outstandingTable = $('#outstandingRequests').DataTable();
+						outstandingTable = $('#outstandingRequests').DataTable(
+								{"rowId":'subscribeTo',
+								"columns":[{
+										data:'timeStamp'},{
+										data:'subscribeTo'
+										}]
+									
+								});
+						
 						updateOutstandingTable();
 						});
 					
 					 var populateTable = function(data){
 						 
 						 console.log("Number of outstanding requests: " + data.length);
-						 for(i=0;i<data.length;i++){
-							 
-						var flag = 0;
-						$("#outstandingRequests").find("tr").each(function () { //iterate through rows
-							 var td1 = $(this).find("td:eq(1)").text(); //get value of first td in row
-							 console.log(data[i].subscribeTo + ", " + td1);
-							 if (data[i].subscibeTo === td1) { //compare if test = td1 AND sample = td2
-								 console.log("EQUALS!")
-								 flag = 1; //raise flag if yes
-							      }
-							});
-							 
-						if(flag == 0){
-						 outstandingTable.row.add( [
-							 data[i].timeStamp,
-							 data[i].subscribeTo
-					        ] ).draw( false );
-						}
-					 	}
+						 
+						 data.forEach(function(d){
+							 console.log(d.timeStamp + ", " + d.subscribeTo);
+							 if(outstandingTable.rows('[id='+d.subscribeTo+']').any()){
+								 console.log("Row already exists")
+							 }else{
+								 outstandingTable.row.add(d).draw();
+							 }
+						 });
+						 
 					 }
 	
 					var updateOutstandingTable = function(){
@@ -110,11 +109,12 @@
 					<table id="outstandingRequests">
 					<thead>
 					<tr>
-					<th>Request Date</th>
-					<th>Request Recipient</th>
+					<th>timeStamp</th>
+					<th>subscribeTo</th>
 					</tr>
 					</thead>
 					<tbody>
+					
 					</tbody>
 					</table>
 				</div>
