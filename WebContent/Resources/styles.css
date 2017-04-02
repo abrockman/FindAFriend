@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.myModel-content{
+	margin-top:1em;
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+}
+
+.myForm{
+	width: 40%;
+}
+
+
+.table{
+	margin-top:1em;
+}

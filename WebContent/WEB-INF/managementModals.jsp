@@ -7,15 +7,20 @@
 	var="dataTablesJs" />
 <c:url value="/Resources/DataTables/datatables.min.css"
 	var="dataTablesCss" />
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <link href="${dataTablesCss}" rel="stylesheet" />
 <script src="${dataTablesJs}"></script>
+
+<script src="//cdn.datatables.net/plug-ins/1.10.13/dataRender/datetime.js"></script>
+
 
 <!-- Tabbed model -->
 <button type="button" data-toggle="modal" data-target="#manModal">Management</button>
 
 <div id="manModal" class="modal fade" role="dialog"
 	data-backdrop="static" data-keyboard="false">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<!-- Modal content-->
 		<div class="modal-content">
 
@@ -38,10 +43,15 @@
 				<!-- Send subscription resquest -->
 				<div class="tab-pane active" id="sendRequest">
 
-					<form id="newrequest" action="subscriptions/subscribe" method="post">
+			<div class = "myModel-content">
+					<form id="newrequest" action="subscriptions/subscribe" method="post" class="myForm">
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.user}">
-						<label>Subscribe To</label> <input type="text" id = "subscribeTo" name="subscribeTo">
-						<input type="submit" value="Send Request">
+						<div class="form-group">
+						<label for = "subscribeTo">Subscribe To</label>
+						<input class="form-control" type="text" id = "subscribeTo" name="subscribeTo">
+						</div>
+						<input  type="submit" value="Send Request" class="btn btn-default">
+						
 					</form>
 
 					<script type="text/javascript">
@@ -55,6 +65,7 @@
 										data:'timeStamp'},{
 										data:'subscribeTo'
 										}]
+								  
 									
 								});
 						
@@ -64,13 +75,12 @@
 					 var populateTable = function(data){
 						 
 						 console.log("Number of outstanding requests: " + data.length);
-						 
 						 data.forEach(function(d){
 							 console.log(d.timeStamp + ", " + d.subscribeTo);
 							 if(outstandingTable.rows('[id='+d.subscribeTo+']').any()){
 								 console.log("Row already exists")
 							 }else{
-								 outstandingTable.row.add(d).draw();
+								 outstandingTable.rows.add([{"timeStamp":new Date(d.timeStamp), "subscribeTo":d.subscribeTo}]).draw();
 							 }
 						 });
 						 
@@ -105,8 +115,9 @@
 					
 					
 					</script>
-					
-					<table id="outstandingRequests">
+					<div class = "table">
+					<h4>Outstanding Requests</h4>
+					<table id="outstandingRequests" class="display" cellspacing="0" width="100%">
 					<thead>
 					<tr>
 					<th>timeStamp</th>
@@ -117,6 +128,9 @@
 					
 					</tbody>
 					</table>
+					</div>
+				</div>
+				
 				</div>
 
 				<!-- View Pending Approval subscription requests -->

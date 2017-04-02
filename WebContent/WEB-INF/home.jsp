@@ -8,12 +8,13 @@
                    value="/Resources/bootstrap/css/bootstrap.min.css" />
             <c:url var="bootstrapJs"
                    value="/Resources/bootstrap/js/bootstrap.min.js" />
-
+<c:url var="customStyle"
+                   value="/Resources/styles.css" />
 
             <script src="${jQuery}"></script>
             <link rel="stylesheet" href="${bootstrapCss}">
             <script src="${bootstrapJs}"></script>
-
+<link rel="stylesheet" href="${customStyle}">
             <title>Find A Friend</title>
         </head>
         <body>
