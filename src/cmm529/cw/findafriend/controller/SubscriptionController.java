@@ -30,7 +30,6 @@ public class SubscriptionController {
 	// Send request
 	@Path("subscribe")
 	@POST
-	
 	public void sendSubscriptionRequest(@FormParam("userId") String subscriber, @FormParam("subscribeTo") String subscribeTo, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
 		if(subscriber != null && subscribeTo != null){
 			if(userService.findUserById(subscribeTo)!= null){
@@ -89,7 +88,10 @@ public class SubscriptionController {
 	}
 
 	// Approve Request
-	public void approveRequest() {
-
+	@Path("accept-request")
+	@POST
+	public void approveRequest(@FormParam("subscriberId") String subscriberId, @FormParam("subscribeTo") String subscribeTo) {
+		//find request entry
+		//accept request with service
 	}
 }

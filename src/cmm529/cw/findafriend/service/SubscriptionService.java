@@ -18,4 +18,6 @@ public interface SubscriptionService {
 	public void declineRequest(SubscriptionRequest subReq);
 	
 	public Subscription getSubscription(String subscriberId);
+	
+	public SubscriptionRequest getSubscriptionRequest(String subscriberId, String subscribeToId);
 }

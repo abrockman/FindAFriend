@@ -51,5 +51,9 @@ public abstract class AbstractDynamoDao<T> {
 				.withExpressionAttributeValues(map);
 		return mapper.scan(persistentClass, scanCrit);
 	}
+	
+	public DynamoDBMapper getMapper(){
+		return mapper;
+	}
 
 }

@@ -54,6 +54,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		return subscriptionDao.findById(subscriberId);
 	}
 	
+	public SubscriptionRequest getSubscriptionRequest(String subscriberId, String subscribeToId){
+		return subscriptionRequestDao.findSubsciptionRequest(subscriberId, subscribeToId);
+	}
+	
+	
+	
 	
 
 }

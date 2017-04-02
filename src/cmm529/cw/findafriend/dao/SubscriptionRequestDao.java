@@ -15,4 +15,5 @@ public interface SubscriptionRequestDao {
 	
 	public List<SubscriptionRequest> findSubscriptionReqByReciever(String subscribeToId);
 
+	public SubscriptionRequest findSubsciptionRequest(String subscriberId, String subscripeToId);
 }
