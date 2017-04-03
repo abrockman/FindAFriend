@@ -65,9 +65,11 @@
                             </c:if>
 
                             <form action = "login" method="post">
-                                <label> Username</label>
-                                <input name = "userId" type="text">
-                                <input type = "submit" value="login">
+                            <div class = "form-group">
+                                <label for="userLogin"> Username</label>
+                                <input id="userLogin" class="form-control" name = "userId" type="text">
+                            </div>
+                                <input class="btn btn-default" type = "submit" value="login">
                             </form>
 
                             <h4>Sign Up</h4>
@@ -76,10 +78,11 @@
                             </c:if>
 
                             <form action="signup" method= "post">
-
-                                <label> Select a Username</label>
-                                <input name = "userId" type = "text">
-                                <input type = "submit" value = "Sign Up">
+								<div class = "form-group">
+	                                <label for="userSignup"> Select a Username</label>
+	                                <input id="userSignup" class="form-control" name = "userId" type = "text">
+                                </div>
+                                <input class="btn btn-default" type = "submit" value = "Sign Up">
                             </form>
 
                         </div>

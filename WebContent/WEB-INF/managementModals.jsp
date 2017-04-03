@@ -193,7 +193,10 @@
 				</div>
 
 				<!-- All current suSbscriped to -->
-				<div class="tab-pane" id="subscriptions">content 1</div>
+				<div class="tab-pane" id="subscriptions">
+				<div class="myModel-content">content 1
+				</div>
+				</div>
 			</div>
 
 		</div>
