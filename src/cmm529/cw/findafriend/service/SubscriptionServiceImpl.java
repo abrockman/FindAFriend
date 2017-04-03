@@ -37,7 +37,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Override
 	public void approveRequest(SubscriptionRequest subReq) {
-		Subscription sub = subscriptionDao.findById(subReq.getSubscriberId());
+		//On subscription to the service an new subscription with initalised hashset should be created.
+		//Then any further accepted subscriptions will add to a NON NULL hash set.
+		Subscription sub = new Subscription();
 		sub.setSubscriberId(subReq.getSubscriberId());
 		sub.getSubscribeTo().add(subReq.getSubscribeTo());
 		subscriptionDao.save(sub);

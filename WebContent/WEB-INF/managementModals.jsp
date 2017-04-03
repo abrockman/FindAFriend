@@ -80,8 +80,26 @@
 											"columns":[	{data:"timeStamp"},
 														{data:"subscriberId"},
 														{data:"accept"},
-														{data:"decline"}]
+														{data:"decline"}],
+											"columnDefs": [ {
+									            "targets": -2,
+									            "data": null,
+									            "defaultContent": "<button>Click!</button>"}]
 						});
+						
+						$('#awaitingApproval tbody').on('click', 'button', function () {
+					        var data = awaitingApproval.row($(this).parents('tr')).id();
+					        alert( 'You clicked on '+ data +'\'s entry' );
+					        $.ajax({
+					        	  type: "POST",
+					        	  url: "subscriptions/accept-request",
+					        	  data: {
+					        		  "subscriberId":data,
+					        		  "subscribeTo":"${sessionScope.user}"
+					        	  },
+					        	  success: console.log("success")
+					        	});
+					    } );
 						
 						updateAwaitingApprovalTable();
 						
@@ -105,7 +123,7 @@
 							 if(awaitingApproval.rows('[id='+d.subscriberId+']').any()){
 							 }else{
 							
-								 awaitingApproval.rows.add([{"timeStamp":new Date(d.timeStamp).toLocaleDateString(), "subscriberId":d.subscriberId, "accept": yep, "decline":nope}]).draw();
+								 awaitingApproval.rows.add([{"timeStamp":new Date(d.timeStamp).toLocaleDateString(), "subscriberId":d.subscriberId, "decline":nope}]).draw();
 							 }
 						 });
 						 

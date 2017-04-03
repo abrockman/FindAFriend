@@ -41,7 +41,7 @@ public class SubscriptionRequestDaoImpl extends AbstractDynamoDao<SubscriptionRe
 		map.put(":val1", new AttributeValue().withS(subscriberId));
 		map.put(":val2", new AttributeValue().withS(subscripeToId));
 		DynamoDBQueryExpression<SubscriptionRequest> scanCrit = new DynamoDBQueryExpression<SubscriptionRequest>()
-				.withKeyConditionExpression("subscriberId = :val1 and subscribeTo = :val2")
+				.withKeyConditionExpression("subscriber = :val1 and subscribeTo = :val2")
 				.withExpressionAttributeValues(map);
 		List<SubscriptionRequest> list = super.getMapper().query(SubscriptionRequest.class, scanCrit);
 		if(list.size()>0){
