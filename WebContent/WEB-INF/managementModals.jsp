@@ -104,7 +104,8 @@
 						 data.forEach(function(d){
 							 if(awaitingApproval.rows('[id='+d.subscriberId+']').any()){
 							 }else{
-								 awaitingApproval.rows.add([{"timeStamp":new Date(d.timeStamp), "subscriberId":d.subscriberId, "accept": yep, "decline":nope}]).draw();
+							
+								 awaitingApproval.rows.add([{"timeStamp":new Date(d.timeStamp).toLocaleDateString(), "subscriberId":d.subscriberId, "accept": yep, "decline":nope}]).draw();
 							 }
 						 });
 						 
@@ -121,7 +122,7 @@
 							 console.log(d.timeStamp + ", " + d.subscribeTo);
 							 if(outstandingTable.rows('[id='+d.subscribeTo+']').any()){
 							 }else{
-								 outstandingTable.rows.add([{"timeStamp":new Date(d.timeStamp), "subscribeTo":d.subscribeTo}]).draw();
+								 outstandingTable.rows.add([{"timeStamp":new Date(d.timeStamp).toLocaleDateString(), "subscribeTo":d.subscribeTo}]).draw();
 							 }
 						 });
 						 
