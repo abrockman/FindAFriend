@@ -28,8 +28,6 @@ import cmm529.cw.findafriend.service.UserService;
 @Path("")
 public class WelcomeController {
 
-	private @Inject UserDao userDao;
-
 	private @Inject UserService userService;
 
 	@GET
@@ -44,13 +42,13 @@ public class WelcomeController {
 	public void login(@FormParam("userId") String userId, @Context HttpServletRequest request,
 			@Context HttpServletResponse response) throws ServletException, IOException {
 
-		if (userDao.findById(userId) == null) {
+		if (userService.findUserById(userId) == null) {
 			request.setAttribute("error", "Username was not found.");
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userId);
-			request.getSession().setAttribute("userLoc", userDao.findById(userId).getLocation());
+			request.getSession().setAttribute("userLoc", userService.findUserById(userId).getLocation());
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		}
 
@@ -61,19 +59,19 @@ public class WelcomeController {
 	public void signup(@FormParam("userId") String userId, @Context HttpServletRequest request,
 			@Context HttpServletResponse response) throws ServletException, IOException {
 
-		if (userDao.findById(userId) != null) {
+		if (userService.findUserById(userId) != null) {
 			request.setAttribute("signUpError", "Username is already taken.");
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		} else {
 
 			User user = new User();
 			user.setId(userId);
-			userDao.save(user);
+			userService.createNewUser(user);
 
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userId);
 			request.setAttribute("signUpSuccess", "Congratulations! You have created an account.");
-			request.getSession().setAttribute("userLoc", userDao.findById(userId).getLocation());
+			request.getSession().setAttribute("userLoc", userService.findUserById(userId).getLocation());
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		}
 

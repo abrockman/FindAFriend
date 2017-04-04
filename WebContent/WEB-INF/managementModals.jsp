@@ -108,7 +108,7 @@
 					
 	
 					 var updateAwaitingApprovalTable = function(){
-						 var pendingApprovalURL = "subscriptions/pending-approval/"+${sessionScope.user};
+						 var pendingApprovalURL = "subscriptions/pending-approval/"+"${sessionScope.user}";
 						 console.log(pendingApprovalURL); 
 							$.get(pendingApprovalURL, function(data, status){
 								 populateAwaitingApprovalTable(data);
@@ -119,7 +119,9 @@
 						 //TODO Temp vals
 						 var yep = "Accept";
 						 var nope = "Decline";
+						 awaitingApproval.clear().draw();
 						 data.forEach(function(d){
+							 console.log(d);
 							 if(awaitingApproval.rows('[id='+d.subscriberId+']').any()){
 							 }else{
 							
@@ -135,7 +137,8 @@
 						    });	
 					}
 					
- 					var populateTable = function(data){	 
+ 					var populateTable = function(data){	
+ 						outstandingTable.clear().draw();
 						 data.forEach(function(d){
 							 console.log(d.timeStamp + ", " + d.subscribeTo);
 							 if(outstandingTable.rows('[id='+d.subscribeTo+']').any()){
