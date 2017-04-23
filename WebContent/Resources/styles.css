@@ -1,0 +1,194 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background:#efefef;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color:#fff;
+	}
+
+.navbar-default .navbar-brand {
+	color:#fff;
+	}
+
+.navbar {
+	color:#fff;
+	border-radius: 0px;
+	border: 0px;
+	margin-bottom: 0px;
+	background:#22564E;
+}
+
+.sidebar {
+	height: 100%;
+	width: 260px;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	background:#efefef;
+	border-right:solid;
+	border-right-color:#22564E;
+	overflow-x: hidden;
+	margin-top:0;
+	padding-top: 1em;
+}
+
+#subscriptionsList {
+	
+	list-style-type: none;
+	margin-top:1em;
+	padding:0;
+}
+
+#select-buttons{
+	padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-row{
+	width:100%;
+	padding:0.5em;
+}
+
+.btn-row .btn-group {
+	width:100%;
+}
+
+.btn-row .btn-group .btn{
+	width:50%;
+
+}
+
+.btn-primary{
+	background-color: #4abdac;
+    border-color: #4abdac;
+}
+
+.btn-primary:hover{
+	background-color: #4B95BC;
+    border-color: #4B95BC;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #4B95BC;
+    border-color: #4B95BC;
+}
+
+.modal-header {
+	color:#fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color:#22564E;
+    
+}
+
+.model-content {
+	background-color:#22564E;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #fff;
+    cursor: default;
+    background-color: #4abdac;
+    border: 0;
+    
+
+}
+
+
+#subscriptionsList > li {
+	border-top:solid;
+	
+	border-top-width:0.1em;
+	border-bottom:solid;
+	border-top-width:0.1em;
+	border-color:#d6d6d6;
+	margin-bottom:-0.1em;
+	line-height:2.5em;
+	width:100%;
+	
+	
+}
+
+.sub-selected{
+	background-color: #4abdac;
+	
+}
+
+.list-el{
+	display:inline-flex;
+	width:100%;
+}
+
+#subscriptionsList li :hover{
+	background-color:#4B95BC;
+}
+
+#subscriptionsList .user-item {
+	width:50%;
+	padding-left:1em;
+	padding-right:1em;
+	
+	
+	
+	
+}
+
+#subscriptionsList .focus-icon{
+	width:20%;
+	float:right;
+	padding-left:2em;
+	padding-right:1em;
+	
+	
+}
+
+#subscriptionsList .user-logo {
+	
+	padding-left:2em;
+	padding-right:1em;
+	
+	
+}
+
+}
+.googleMap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.mapContainer {
+	background:#efefef;
+	position: relative;
+	margin-left: 260px;
+	padding: 1em;
+	height: 100%;
+	overflow: hidden;
+}
+
+.myModel-content {
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+
+
+.table {
+	margin-top: 1em;
+}

@@ -8,6 +8,7 @@ import cmm529.coursework.friend.model.User;
 @Contract
 public interface UserService {
 
+	public void createNewUser(User user);
 	
 	public void save(User user);
 	
