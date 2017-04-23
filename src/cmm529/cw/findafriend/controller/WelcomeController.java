@@ -41,15 +41,19 @@ public class WelcomeController {
 	@POST
 	public void login(@FormParam("userId") String userId, @Context HttpServletRequest request,
 			@Context HttpServletResponse response) throws ServletException, IOException {
-
-		if (userService.findUserById(userId) == null) {
-			request.setAttribute("error", "Username was not found.");
+		if (userId.equals("")) {
+			request.setAttribute("error", "Please enter a username.");
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", userId);
-			request.getSession().setAttribute("userLoc", userService.findUserById(userId).getLocation());
-			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+			if (userService.findUserById(userId) == null) {
+				request.setAttribute("error", "Username was not found.");
+				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", userId);
+				request.getSession().setAttribute("userLoc", userService.findUserById(userId).getLocation());
+				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+			}
 		}
 
 	}

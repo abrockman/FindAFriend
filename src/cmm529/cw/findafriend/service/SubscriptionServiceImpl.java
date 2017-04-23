@@ -57,11 +57,20 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		return subscriptionDao.findById(subscriberId);
 	}
 	
+	@Override
 	public SubscriptionRequest getSubscriptionRequest(String subscriberId, String subscribeToId){
 		return subscriptionRequestDao.findSubsciptionRequest(subscriberId, subscribeToId);
 	}
 	
-	
+	@Override
+	public void deleteSubscription(String subscriberId, String subscribeToId){
+		Subscription sub = subscriptionDao.findById(subscriberId);
+		if(sub != null && sub.getSubscribeTo() != null){
+			System.out.println(sub.getSubscribeTo().remove(subscribeToId));
+		}
+		subscriptionDao.save(sub);
+		
+	}
 	
 	
 

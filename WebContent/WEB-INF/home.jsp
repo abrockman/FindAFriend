@@ -2,24 +2,30 @@
     <!DOCTYPE html>
     <html>
         <head>
+        
+        
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
             <c:url var="jQuery" value="/Resources/jQuery/jquery-3.2.0.min.js" />
             <c:url var="bootstrapCss"
                    value="/Resources/bootstrap/css/bootstrap.min.css" />
             <c:url var="bootstrapJs"
                    value="/Resources/bootstrap/js/bootstrap.min.js" />
-<c:url var="customStyle"
+			<c:url var="customStyle"
                    value="/Resources/styles.css" />
 
             <script src="${jQuery}"></script>
             <link rel="stylesheet" href="${bootstrapCss}">
             <script src="${bootstrapJs}"></script>
-<link rel="stylesheet" href="${customStyle}">
+            
+			<link rel="stylesheet" href="${customStyle}">
+			
+			
+			
             <title>Find A Friend</title>
         </head>
         <body>
 
-            <jsp:include page="NavBar.jsp"></jsp:include>
+            
 
 
             <!-- AIzaSyAsirY24ohCpJEsaTHsyL4IDSoCw96Nh7o -->
@@ -30,8 +36,11 @@
                 	<script>
            				var user = "${sessionScope.user}";
           			</script>
+          			<jsp:include page="NavBar.jsp"></jsp:include>
+          			<jsp:include page="SideBar.jsp"></jsp:include>
           			<jsp:include page="managementModals.jsp"></jsp:include>
-                	<jsp:include page="Maps.jsp"></jsp:include>
+          			<jsp:include page="Maps.jsp"></jsp:include>
+                	
                 </c:when>
                
                 <c:otherwise>
@@ -45,10 +54,16 @@
                          );
                     </script>
                 </c:otherwise>
-            </c:choose>
+            </c:choose><!--  /User assessment  -->
 
-            <h1>${sessionScope.user}</h1>
+            
             <h2>${signUpSuccess}</h2>
+
+
+
+
+
+
 
 			<!-- Login / Sign Up Modal -->
             <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -64,12 +79,12 @@
                                 <div class="alert alert-danger">${error}</div>
                             </c:if>
 
-                            <form action = "login" method="post">
+                            <form action = "login" method="post" class="form-inline">
                             <div class = "form-group">
-                                <label for="userLogin"> Username</label>
+                                <label for="userLogin">Username: </label>
                                 <input id="userLogin" class="form-control" name = "userId" type="text">
                             </div>
-                                <input class="btn btn-default" type = "submit" value="login">
+                                <input class="btn btn-primary" type = "submit" value="login">
                             </form>
 
                             <h4>Sign Up</h4>
@@ -77,18 +92,18 @@
                                 <div class="alert alert-danger">${error}</div>
                             </c:if>
 
-                            <form action="signup" method= "post">
+                            <form action="signup" method= "post" class="form-inline">
 								<div class = "form-group">
-	                                <label for="userSignup"> Select a Username</label>
+	                                <label for="userSignup">Select A Username: </label>
 	                                <input id="userSignup" class="form-control" name = "userId" type = "text">
                                 </div>
-                                <input class="btn btn-default" type = "submit" value = "Sign Up">
+                                <input class="btn btn-primary" type = "submit" value = "Sign Up">
                             </form>
 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- Login / Sign up modal -->
 
         </body>
     </html>

@@ -20,4 +20,6 @@ public interface SubscriptionService {
 	public Subscription getSubscription(String subscriberId);
 	
 	public SubscriptionRequest getSubscriptionRequest(String subscriberId, String subscribeToId);
+
+	void deleteSubscription(String subscriberId, String subscribeToId);
 }
