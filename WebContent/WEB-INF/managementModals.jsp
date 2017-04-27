@@ -57,7 +57,6 @@
 							
 											"rowId":"subscribeTo",
 											"columns":[	{data:"subscribeTo"},
-														{data:"currentLocation"},
 														{data:"delete"}],
 														"columnDefs": [
 															{
@@ -133,8 +132,7 @@
 						data.subscribeTo.forEach(function(d) {
 							console.log(d + ", " + userDateMap[d]);
 							currentSubscriptions.rows.add([ {
-								"subscribeTo" : d,
-								"currentLocation" : new Date(userDateMap[d]).toLocaleDateString()
+								"subscribeTo" : d
 							} ]).draw();
 
 						});
@@ -324,7 +322,6 @@
 						<thead>
 							<tr>
 								<th>Subscription To</th>
-								<th>Current Location</th>
 								<th>Delete</th>
 							</tr>
 						</thead>

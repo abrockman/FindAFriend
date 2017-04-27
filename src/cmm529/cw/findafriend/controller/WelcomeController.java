@@ -9,20 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import cmm529.coursework.friend.model.Location;
 import cmm529.coursework.friend.model.User;
-import cmm529.cw.findafriend.dao.UserDao;
 import cmm529.cw.findafriend.service.UserService;
 
 @Path("")
@@ -30,12 +24,38 @@ public class WelcomeController {
 
 	private @Inject UserService userService;
 
+	@Path("")
 	@GET
 	public void getHome(@Context HttpServletRequest request, @Context HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 
 	}
+	
+	@Path("login")
+	@GET
+	public void home(@Context HttpServletRequest request, @Context HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+
+	}
+	
+	@Path("signup")
+	@GET
+	public void signup(@Context HttpServletRequest request, @Context HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+
+	}
+	
+	@Path("logout")
+	@GET
+	public void logout(@Context HttpServletRequest request, @Context HttpServletResponse response) throws ServletException, IOException{
+		request.getSession().setAttribute("user", null);
+		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+	}
+	
+	
 
 	@Path("login")
 	@POST
@@ -53,6 +73,7 @@ public class WelcomeController {
 				session.setAttribute("user", userId);
 				request.getSession().setAttribute("userLoc", userService.findUserById(userId).getLocation());
 				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+			
 			}
 		}
 

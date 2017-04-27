@@ -17,7 +17,6 @@ public class AppBinder extends AbstractBinder  {
 
 	@Override
 	protected void configure() {
-		bind(NumberGenImpl.class).to(NumberGen.class);
 		bind(UserDaoImpl.class).to(UserDao.class);
 		bind(UserServiceImpl.class).to(UserService.class);
 		bind(SubscriptionRequestDaoImpl.class).to(SubscriptionRequestDao.class);
